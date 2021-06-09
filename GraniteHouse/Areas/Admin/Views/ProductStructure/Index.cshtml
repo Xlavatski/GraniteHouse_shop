@@ -1,0 +1,41 @@
+﻿@model IEnumerable<GraniteHouse.Models.Queries.GroupByModelQuery>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Product Structure List</h2>
+    </div>
+</div>
+
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.ProductTypes.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Count)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.ProductTypes.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(m => item.Count)
+                </td>
+            </tr>
+
+        }
+    </table>
+</div>
+

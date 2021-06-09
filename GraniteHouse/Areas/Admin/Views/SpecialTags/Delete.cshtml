@@ -1,0 +1,28 @@
+﻿@model GraniteHouse.Models.SpecialTags
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<br />
+<br />
+
+<h2 class="text-info">Delete Special Tag</h2>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SpecialName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SpecialName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
+        <a asp-action="Index" class="btn btn-success">Back to List</a>
+    </form>
+</div>

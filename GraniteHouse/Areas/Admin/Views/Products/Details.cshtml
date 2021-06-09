@@ -1,0 +1,80 @@
+﻿@model GraniteHouse.Models.ViewModel.ProductVMEntitet
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<br />
+<br />
+<br />
+
+<h2 class="text-info">Product Details</h2>
+<div>
+    <hr />
+    <dl class="form-group row">
+        <dt class="col-sm-5">
+            Name Product
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    <dl class="form-group row">
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+    </dl>
+
+    <dl class="form-group row">
+        <dt class="col-sm-5">
+            Product Type
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductType)
+        </dd>
+    </dl>
+
+    <dl class="form-group row">
+        <dt class="col-sm-5">
+            Special Tags
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SpecialTag)
+        </dd>
+    </dl>
+
+
+    <dl class="form-group row">
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.ShadeColor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ShadeColor)
+        </dd>
+    </dl>
+
+    <dl class="form-group row">
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(model => model.Avaliable)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Avaliable)
+        </dd>
+    </dl>
+
+    <div class="col-1">
+
+    </div>
+    <div class="col-3">
+        <img src="@Model.Image" width="100%" style="border-radius:5px; border:1px solid #bbb9b9;" />
+    </div>
+    <br />
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Update</a>
+    <a asp-action="Index" class="btn btn-success">Back to List</a>
+</div>

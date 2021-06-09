@@ -1,0 +1,36 @@
+﻿@model GraniteHouse.Models.SpecialTags
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<br />
+<br />
+
+<h2 class="text-info">Create Special Tag</h2>
+
+<form method="post" asp-action="Create">
+    <div class="p-4 border rounded">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-8 pt-4">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="SpecialName"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="SpecialName" class="form-control" />
+                    <span asp-validation-for="SpecialName" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Create" />
+                <a asp-action="Index" class="btn btn-success">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

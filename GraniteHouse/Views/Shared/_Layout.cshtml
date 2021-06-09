@@ -1,0 +1,108 @@
+﻿@using Microsoft.AspNetCore.Http
+@using GraniteHouse.Extensions
+@using GraniteHouse.Utility
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GraniteHouse</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/jquery-ui.css"/>
+    <link rel="stylesheet" href="~/css/jquery.timepicker.css"/>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+
+            <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">Granite House</a>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto">
+                    @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Appointments" asp-action="Index">Appointments</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="ProductStructure" asp-action="Index">Product Structure</a>
+                        </li>
+                    }
+
+                    @if (User.IsInRole(SD.SuperAdminEndUser))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">Admin Users</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Content Management
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Product Types</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="SpecialTags" asp-action="Index">Special Tags</a></li>
+                                <li><a class="dropdown-item" asp-area="Admin" asp-controller="Products" asp-action="Index">Product</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
+                    {
+                        <li style="color:white">
+                            <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                <i class="fas fa-shopping-cart"></i> &nbsp;
+                                @{
+                                    var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart").Count;
+                                }
+                                (@count)
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li style="color:white">
+                            <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link">
+                                <i class="fas fa-shopping-cart"></i> &nbsp;
+
+                                (0)
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <div>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - GraniteHouse - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
+
+    <script src="https://kit.fontawesome.com/e19c476714.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

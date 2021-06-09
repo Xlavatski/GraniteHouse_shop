@@ -1,0 +1,56 @@
+﻿@model IEnumerable<GraniteHouse.Models.ProductTypes>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Product Type List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Product Type</a>
+    </div>
+</div>
+
+<br />
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m => item.Name)
+                </td>
+                <td class="text-right">
+                    <partial name="_TableButtonPartial" model="item.Id" />
+                </td>
+
+                @*<td style="width:150px">
+                        <div class="btn-group" role="group">
+                            <a type="button" class="btn btn-primary" href="ProductTypes/Edit/@item.Id">
+                               <i class="fas fa-edit"></i>
+                            </a>
+                            <a type="button" class="btn btn-success" href="ProductTypes/Details/@item.Id">
+                               <i class="far fa-list-alt"></i>
+                            </a>
+                            <a type="button" class="btn btn-danger" href="ProductTypes/Delete/@item.Id">
+                               <i class="fas fa-trash-alt"></i>
+                            </a>
+                        </div>
+                    </td>*@
+            </tr>
+
+        }
+    </table>
+</div>
